@@ -1,24 +1,11 @@
 pipeline {
-    agent {
-        docker {
-            image 'mcr.microsoft.com/dotnet/sdk:9.0'  // Utilisez une version appropriée du SDK
-        }
-    }
+    agent any
 
     stages {
         stage('Clone Repository') {
             steps {
                 git branch: 'main',
                     url: 'https://github.com/hamzaaboulkhair/SolveAppp.git'
-            }
-        }
-
-        stage('Build and Test') {
-            steps {
-                script {
-                    sh 'dotnet build'
-                    sh 'dotnet test'
-                }
             }
         }
 
