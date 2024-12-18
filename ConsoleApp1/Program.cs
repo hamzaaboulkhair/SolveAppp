@@ -13,15 +13,11 @@ namespace SolveApp
 
             var solution = SolveQuadratic(a, b, c);
 
-            if (solution.X1.HasValue && solution.X2.HasValue)
-            {
+            
+            
                 Console.WriteLine($"Roots: X1={solution.X1}, X2={solution.X2}");
             }
-            else
-            {
-                Console.WriteLine("No real roots");
-            }
-        }
+
 
        public static Solution SolveQuadratic(double a, double b, double c)
 {
