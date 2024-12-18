@@ -23,20 +23,26 @@ namespace SolveApp
             }
         }
 
-        public static Solution SolveQuadratic(double a, double b, double c)
-        {
-            double discriminant = b * b - 4 * a * c;
+       public static Solution SolveQuadratic(double a, double b, double c)
+{
+    double discriminant = b * b - 4 * a * c;
 
-            if (discriminant < 0)
-            {
-                return new Solution(null, null); // No real roots
-            }
+    if (discriminant > 0)
+    {
+        double x1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
+        double x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
+        return new Solution(x1, x2);  // Deux racines réelles
+    }
+    else if (discriminant == 0)
+    {
+        double x1 = -b / (2 * a);
+        return new Solution(x1, null);  // Une seule racine réelle
+    }
+    else
+    {
+        return new Solution(null, null);  // Pas de racines réelles
+    }
+}
 
-            double sqrtD = Math.Sqrt(discriminant);
-            double x1 = (-b + sqrtD) / (2 * a);
-            double x2 = (-b - sqrtD) / (2 * a);
-
-            return new Solution(x1, x2);
-        }
     }
 }
