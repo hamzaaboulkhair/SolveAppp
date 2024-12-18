@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'mcr.microsoft.com/dotnet/sdk:9.0'  // Utilisez une version appropriée du SDK
+        }
+    }
 
     stages {
         stage('Clone Repository') {
@@ -12,7 +16,6 @@ pipeline {
         stage('Build and Test') {
             steps {
                 script {
-                    // Compilation et tests
                     sh 'dotnet build'
                     sh 'dotnet test'
                 }
@@ -22,7 +25,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Créer une image Docker
                     sh 'docker build -t solveapp:latest .'
                 }
             }
@@ -31,7 +33,6 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    // Exécuter le conteneur pour validation
                     sh 'docker run --rm solveapp:latest'
                 }
             }
